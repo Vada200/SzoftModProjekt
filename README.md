@@ -1,33 +1,25 @@
 # Kulcs felvételi rendszer szimulátor.
 
-Webes alkalmazás ami segítségével az DE-IK épület kulcsait vehetjük fel, adhatjuk le és kérhetjük le elérhetőségüket.
-<br><br>
+Webes alkalmazás, amely segítségével a DE-IK épület kulcsait vehetjük fel, adhatjuk le és kérhetjük le elérhetőségüket.
+<br/><br/>
 
 ## Kulcs felvétel menete:  
-Az oldal kötelez egy név megadására illetve egy elérhető kulcs kijelölésre. Ezután a Felvesz gomb megnyomásával van lehetőség felvenni a kulcsot. A felvétel időpontja automatikusan rögzítésre kerül.
-<br><br>
+Az oldal kötelez egy név megadására, illetve egy elérhető kulcs kijelölésére. Ezután a *Felvesz* gomb megnyomásával van lehetőség felvenni a kulcsot. A felvétel időpontja automatikusan rögzítésre kerül.
+<br/><br/>
 ## Funkcionalitás:  
-Az oldalon a felhasználó először egy táblázattal találkozik ahol látja az összes elérhető és nem elérhető kulcsokat.
+Az oldalon a felhasználó először egy táblázattal találkozik, ahol látja az összes elérhető és nem elérhető kulcsot.
 
-Adott termek kulcsára kattintva van lehetőség a kulcsok felvételére. Kulcsot akkor lehet felvenni ha elérhető, ezt a színe is jelzi (kék), amennyiben nincs erre lehetőség akkor a kulcs piros. Foglalt kulcsra kattintás esetén alertbox-on lehet megnézni kinél van illetve mikor vette fel. Kulcs kijelölése esetén a kulcs színe megváltozik (sárga).  
-<br><br>
-A programot html, css és javascript valamint Bootstrap segítségével hoztuk létre. <br>
+Adott terem kulcsára kattintva van lehetőség a kulcsok kiválasztására. Kulcsot akkor lehet felvenni, ha az elérhető, ezt a sorában lévő ikon jelzi. Az elérhetőséget zöld pipa jelzi, ellenkező esetben egy nagy X látható. Foglalt kulcsra való kattintás esetén alertbox-on lehet megnézni kinél van, illetve mikor vette fel. Kulcs kijelölésével a sor színe megváltozik. 
+<br/><br/>
 
-![alt text]()
+A programot HTML, CSS és JavaScript, valamint Bootstrap segítségével hoztuk létre. <br><br>
 
-Az adatok az adott session-ben vannak tárolva <br><br>
+![alt text](frontend.png)
 
-Támogatott böngészők: Mozilla, Chrome, Opera, Edge, Safari<br>
+<br/>
+A későbbiekben kulcsot a csak erre jogosult személyek vehetik fel. Az azonosítójuk tárolva lesz, illetve ez bővíthető lesz. <br/><br/>
+
+Az adatok az adott session-ben vannak tárolva <br/><br/>
+
+Támogatott böngészők: Mozilla, Chrome, Opera, Edge, Safari<br/>
 Támogatott eszközök: PC, laptop, telefon, tablet
-
-
-
-
-
-
-
-
-
-
-
-
