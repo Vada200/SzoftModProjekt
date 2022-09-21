@@ -133,14 +133,22 @@ function inputPass() {
 }
 
 // All Fields Complete - Show h1 end
-function formComplete() {
+function formComplete(admitKey) {
   const h1 = document.createElement("h1");
   h1.classList.add("end");
-  h1.appendChild(
-    document.createTextNode(
-      `Thanks ${questions[0].answer} You are registered and will get an email shortly`
-    )
-  );
+  if (admitKey) {
+    h1.appendChild(
+      document.createTextNode(
+        `Thanks ${questions[0].answer}. You are registered and will get an email shortly!`
+      )
+    );
+  } else {
+    h1.appendChild(
+      document.createTextNode(
+        `Thanks ${questions[0].answer}. You successfully returned the key!`
+      )
+    );
+  }
   setTimeout(() => {
     formBox.parentElement.appendChild(h1);
     setTimeout(() => (h1.style.opacity = 1), 50);
@@ -165,37 +173,60 @@ adminBtn.onmousemove = function (e) {
 
 clickableButtons.forEach((clickable) => {
   clickable.addEventListener("click", function () {
+    const collection = clickable.getElementsByTagName("td");
     if (previousRow !== null) {
       previousRow.style.backgroundColor = "";
-      previousRow.getElementsByTagName("td")[availability].innerHTML = keyAvailable;
       previousRow = null;
     }
-
-    const collection = clickable.getElementsByTagName("td");
+    previousRow = clickable;
     if (collection[availability].innerHTML === keyTaken) {
-      alert("This key is already assigned to another user!");
+      clickable.style.backgroundColor = "#90EE90"; // light-green
       return;
     }
     clickable.style.backgroundColor = "yellow";
-    collection[availability].innerHTML = keyTaken;
-    previousRow = clickable;
   });
 });
 
 adminBtn.addEventListener("click", function () {
+  const collection = previousRow.getElementsByTagName("td");
+  
   // Check if name is filled
   if (inputField.value.length < 1) {
     alert("Name field must be filled!");
     return;
-  } 
-  else if (previousRow === null) {
+  } else if (previousRow === null) {
     alert("No key was selected!");
+    return;
+  } else if (collection[availability].innerHTML !== keyAvailable) {
+    alert("This key is not available!");
     return;
   }
 
   previousRow.style.backgroundColor = "";
+  previousRow.getElementsByTagName("td")[availability].innerHTML = keyTaken;
   previousRow = null;
 
   // Form Complete
-  formComplete();
+  formComplete(true);
+});
+
+submitBtn.addEventListener("click", function () {
+  const collection = previousRow.getElementsByTagName("td");
+
+  // Check if name is filled
+  if (inputField.value.length < 1) {
+    alert("Name field must be filled!");
+    return;
+  } else if (previousRow === null) {
+    alert("No key was selected!");
+    return;
+  } else if (collection[availability].innerHTML !== keyTaken) {
+    alert("This key is not taken!");
+    return;
+  }
+
+  previousRow.style.backgroundColor = "";
+  previousRow.getElementsByTagName("td")[availability].innerHTML = keyAvailable;
+  previousRow = null;
+  formComplete(false);
 });
