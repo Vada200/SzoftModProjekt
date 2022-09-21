@@ -8,6 +8,13 @@ const switchTime = 200; // Transition Between Questions
 // Init Position At First Question
 let position = 0;
 
+// Third element index
+const availability = 2;
+
+// Key taken sign
+const keyTaken = "✖";
+const keyAvailable = "✔";
+
 // Init DOM Elements
 const formBox = document.querySelector("#form-box");
 const nextBtn = document.querySelector("#next-btn");
@@ -20,6 +27,7 @@ const progress = document.querySelector("#progress-bar");
 const adminBtn = document.querySelector(".button1");
 const submitBtn = document.querySelector(".button2");
 const clickableButtons = document.querySelectorAll(".clickable");
+let previousRow = null;
 
 // EVENTS
 
@@ -121,9 +129,6 @@ function inputPass() {
     hideQuestion();
     formBox.className = "close";
     progress.style.width = "100%";
-
-    // Form Complete
-    formComplete();
   }
 }
 
@@ -160,17 +165,37 @@ adminBtn.onmousemove = function (e) {
 
 clickableButtons.forEach((clickable) => {
   clickable.addEventListener("click", function () {
-    // TODO: Change color of row if key available and clicked
-    alert("clicked!");
+    if (previousRow !== null) {
+      previousRow.style.backgroundColor = "";
+      previousRow.getElementsByTagName("td")[availability].innerHTML = keyAvailable;
+      previousRow = null;
+    }
+
+    const collection = clickable.getElementsByTagName("td");
+    if (collection[availability].innerHTML === keyTaken) {
+      alert("This key is already assigned to another user!");
+      return;
+    }
+    clickable.style.backgroundColor = "yellow";
+    collection[availability].innerHTML = keyTaken;
+    previousRow = clickable;
   });
 });
 
 adminBtn.addEventListener("click", function () {
   // Check if name is filled
-  if (!inputField.value.match(questions[position].pattern || /.+/)) {
+  if (inputField.value.length < 1) {
     alert("Name field must be filled!");
+    return;
+  } 
+  else if (previousRow === null) {
+    alert("No key was selected!");
     return;
   }
 
-  // TODO: Check whether key is chosen
+  previousRow.style.backgroundColor = "";
+  previousRow = null;
+
+  // Form Complete
+  formComplete();
 });
