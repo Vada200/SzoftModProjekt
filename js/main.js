@@ -34,16 +34,6 @@ let previousRow = null;
 // Get Question On DOM Load
 document.addEventListener("DOMContentLoaded", getQuestion);
 
-// Next Button Click
-nextBtn.addEventListener("click", validate);
-
-// Input Field Enter Click
-inputField.addEventListener("keyup", (e) => {
-  if (e.keyCode == 13) {
-    validate();
-  }
-});
-
 // FUNCTIONS
 
 // Get Question From Array & Add To Markup
@@ -100,12 +90,7 @@ function validate() {
 // Field Input Fail
 function inputFail() {
   formBox.className = "error";
-  // Repeat Shake Motion -  Set i to number of shakes
-  for (let i = 0; i < 6; i++) {
-    setTimeout(transform, shakeTime * i, ((i % 2) * 2 - 1) * 20, 0);
-    setTimeout(transform, shakeTime * 6, 0, 0);
-    inputField.focus();
-  }
+  
 }
 
 // Field Input Passed
@@ -180,10 +165,10 @@ clickableButtons.forEach((clickable) => {
     }
     previousRow = clickable;
     if (collection[availability].innerHTML === keyTaken) {
-      clickable.style.backgroundColor = "#90EE90"; // light-green
+      clickable.style.backgroundColor = "#FF5734"; // light-green
       return;
     }
-    clickable.style.backgroundColor = "yellow";
+    clickable.style.backgroundColor = "#90EE90"; //light-red 90EE90
   });
 });
 
@@ -191,8 +176,16 @@ adminBtn.addEventListener("click", function () {
   const collection = previousRow.getElementsByTagName("td");
   
   // Check if name is filled
+  validate();
   if (inputField.value.length < 1) {
+    inputFail();
     alert("Name field must be filled!");
+    // Repeat Shake Motion -  Set i to number of shakes
+    for (let i = 0; i < 6; i++) {
+      setTimeout(transform, shakeTime * i, ((i % 2) * 2 - 1) * 20, 0);
+      setTimeout(transform, shakeTime * 6, 0, 0);
+      inputField.focus();
+    }
     return;
   } else if (previousRow === null) {
     alert("No key was selected!");
@@ -214,8 +207,16 @@ submitBtn.addEventListener("click", function () {
   const collection = previousRow.getElementsByTagName("td");
 
   // Check if name is filled
+  validate();
   if (inputField.value.length < 1) {
+    inputFail();
     alert("Name field must be filled!");
+    // Repeat Shake Motion -  Set i to number of shakes
+    for (let i = 0; i < 6; i++) {
+      setTimeout(transform, shakeTime * i, ((i % 2) * 2 - 1) * 20, 0);
+      setTimeout(transform, shakeTime * 6, 0, 0);
+      inputField.focus();
+    }
     return;
   } else if (previousRow === null) {
     alert("No key was selected!");

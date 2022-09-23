@@ -46,20 +46,6 @@ h1.end {
   box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0);
 }
 
-#next-btn {
-  position: absolute;
-  right: 20px;
-  bottom: 10px;
-  font-size: 40px;
-  color: #428bca;
-  float: right;
-  cursor: pointer;
-  z-index: 2;
-}
-#next-btn:hover {
-  color: #b9d4ec;
-}
-
 #prev-btn {
   position: absolute;
   font-size: 18px;
@@ -165,7 +151,7 @@ table {
   box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.1),
     0 6px 10px 5px rgba(0, 0, 0, 0.1), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
   transition: transform 0.1s ease-in-out;
-}
+} 
 
 #buttons {
   margin-top: 30px;
