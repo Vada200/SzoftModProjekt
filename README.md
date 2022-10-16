@@ -10,9 +10,14 @@ Az oldal kötelez egy név megadására, illetve egy elérhető. vagy leadni kí
 ![alt text](Pictures/uml.png)
 
 ## Funkcionalitás:  
-Az oldalon a felhasználó először egy táblázattal találkozik, ahol látja az összes elérhető és nem elérhető kulcsot.
+Aktor: Tanár
+Az oldalon a felhasználó egy táblázattal találkozik, ahol látja az összes elérhető és nem elérhető kulcsot.
 
-Adott terem kulcsára kattintva van lehetőség a kulcsok kiválasztására. Kulcsot akkor lehet felvenni, ha az elérhető, ezt a sorában lévő ikon jelzi. Az elérhetőséget zöld pipa jelzi, ellenkező esetben egy nagy X látható. Kulcs kijelölésével a sor színe megváltozik. 
+Aktor: Portás
+Az oldalon a felhasználó egy táblázattal találkozik, ahol látja az összes elérhető és nem elérhető kulcsot.  
+A kulcsok felett egy szöveg mező látható, amibe be kell írni a kulcsot felvevő tanár nevét.
+Adott terem kulcsára kattintva van lehetőség a kulcsok kiválasztására. Kulcsot akkor lehet felvenni, ha az elérhető.
+Ezt a sorában lévő ikon jelzi. Az elérhetőséget zöld pipa jelzi, ellenkező esetben egy nagy X látható. Kulcs kijelölésével a sor színe megváltozik. 
 <br/><br/>
 
 A programot HTML, CSS és JavaScript, valamint Bootstrap segítségével hoztuk létre. <br><br>
