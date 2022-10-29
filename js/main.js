@@ -124,7 +124,7 @@ function formComplete(admitKey) {
   if (admitKey) {
     h1.appendChild(
       document.createTextNode(
-        `Thanks ${questions[0].answer}. You are registered and will get an email shortly!`
+        `Thanks ${questions[0].answer}. You successfully took over a key!`
       )
     );
   } else {
@@ -140,12 +140,28 @@ function formComplete(admitKey) {
   }, 1000);
 }
 
-document.querySelector(".button1").onmousemove = function (e) {
+document.querySelector(".button2").onmousemove = function (e) {
   var x = e.pageX - e.target.offsetLeft;
   var y = e.pageY - e.target.offsetTop;
 
   e.target.style.setProperty("--x", x + "px");
   e.target.style.setProperty("--y", y + "px");
+};
+
+document.querySelector(".button").onmousemove = function (e) {
+  var x = e.pageX - e.target.offsetLeft;
+  var y = e.pageY - e.target.offsetTop;
+
+  e.target.style.setProperty("--x", x + "px");
+  e.target.style.setProperty("--y", y + "px");
+};
+
+document.getElementById("statsPageButton").onclick = function () {
+  location.href = "stats.html";
+};
+
+document.getElementById("homePageButton").onclick = function () {
+  location.href = "home.html";
 };
 
 adminBtn.onmousemove = function (e) {

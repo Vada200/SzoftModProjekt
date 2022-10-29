@@ -13,16 +13,20 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
+    <div id="logo-box">
+        <div class="col"></div>
+        <h1 class="logo col-8">Key Sorter</h1>
+        <button id="statsPageButton" class="button submit-button col"><span><b>Stats page</b></span></button>
+    </div>
     <div id="container">
-        <h1 class="logo">Key Sorter</h1>
         <div id="form-box">
-          <i id="prev-btn" class="fas fa-arrow-left"></i>
-          <div id="input-group">
-            <input id="input-field" required>
-            <label id="input-label"></label>
-            <div id="input-progress"></div>
-          </div>
-          <div id="progress-bar"></div>
+            <i id="prev-btn" class="fas fa-arrow-left"></i>
+            <div id="input-group">
+                <input id="input-field" required>
+                <label id="input-label"></label>
+                <div id="input-progress"></div>
+            </div>
+            <div id="progress-bar"></div>
         </div>
         <div id="table-box">
             <table class="table table-hover tablee">
@@ -261,6 +265,6 @@
             </button>
         </div>
     </div>
-      <script src="js/main.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
