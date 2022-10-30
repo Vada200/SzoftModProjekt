@@ -1,13 +1,16 @@
 const express = require("express");
+require("./configs/dotenv");
 const cors = require("cors");
-
+const user = require("./routes/user");
+const path = require("path");
+const { getKeys } = require("./controllers/keyController");
 const app = express(); //Initialized express
+const port = process.env.PORT || 5000;
+const Pool = require("pg").Pool;
+const register = require("./controllers/register");
 
 app.use(express.json());
 app.use(cors());
-
-const port = process.env.PORT || 5000;
-const Pool = require("pg").Pool;
 
 const pool = new Pool({
   user: "postgres",
@@ -17,12 +20,6 @@ const pool = new Pool({
   dialect: "postgres",
   port: 5432,
 });
-
-/* To handle the HTTP Methods Body Parser 
-   is used, Generally used to extract the 
-   entire body portion of an incoming 
-   request stream and exposes it on req.body 
-*/
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -42,17 +39,13 @@ pool.connect((err, client, release) => {
 
 app.get("/keys", (req, res, next) => {
   console.log("TEST DATA :");
-  pool.query("Select * from keys").then((testData) => {
-    console.log(testData);
-    res.send(testData.rows);
-  });
+  res.sendFile(path.resolve("../html/index.html"));
+  //pool.query("Select * from keys").then((testData) => {
+  //  console.log(testData);
+  // res.send(testData.rows);
+  //});
 });
 
-app.listen(port, () => {
-  console.log(`Here we go, Engines started at ${port}.`);
-});
-
-require("./configs/dotenv");
 const client = require("./configs/database");
 
 client.connect((err) => {
@@ -65,6 +58,18 @@ client.connect((err) => {
   }
 });
 
-const user = require("./routes/user");
+app.use("/users", user); //Route for /users endpoint of API
 
-app.use("/users", user); //Route for /user endpoint of API
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
+app.use(express.static("public"));
+app.get("/register", function (req, res) {
+  res.sendFile(path.resolve("../html/register.html"));
+});
+
+app.post("/process_registration", urlencodedParser, function (req, res) {
+  register.register(req, res);
+});
+
+app.listen(port, () => {
+  console.log(`Here we go, Engines started at ${port}.`);
+});

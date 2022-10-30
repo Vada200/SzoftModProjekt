@@ -1,7 +1,5 @@
 const bcrypt = require("bcrypt");
-
 const client = require("../configs/database");
-
 const jwt = require("jsonwebtoken");
 
 //Registration Function
@@ -38,7 +36,7 @@ exports.register = async (req, res) => {
           [user.firstName, user.lastName, user.email, user.password],
           (err) => {
             if (err) {
-              flag = 0; //If user is not inserted is not inserted to database assigning flag as 0/false.
+              flag = 0; //If user is not inserted to database assigning flag as 0/false.
               console.error(err);
               return res.status(500).json({
                 error: "Database error",
