@@ -156,11 +156,11 @@ document.querySelector(".button").onmousemove = function (e) {
 };
 
 document.getElementById("statsPageButton").onclick = function () {
-  location.href = "stats.html";
+  location.href = "stats";
 };
 
 document.getElementById("homePageButton").onclick = function () {
-  location.href = "home.html";
+  location.href = "keys";
 };
 
 adminBtn.onmousemove = function (e) {

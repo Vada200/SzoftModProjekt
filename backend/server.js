@@ -1,13 +1,13 @@
 const express = require("express");
-require("./configs/dotenv");
+require("dotenv").config();
 const cors = require("cors");
-const user = require("./routes/user");
+const user = require("./routes/userRoutes");
 const path = require("path");
 const { getKeys } = require("./controllers/keyController");
 const app = express(); //Initialized express
 const port = process.env.PORT || 5000;
 const Pool = require("pg").Pool;
-const register = require("./controllers/register");
+const userController = require("./controllers/userController");
 
 app.use(express.json());
 app.use(cors());
@@ -37,13 +37,40 @@ pool.connect((err, client, release) => {
   });
 });
 
-app.get("/keys", (req, res, next) => {
-  console.log("TEST DATA :");
-  res.sendFile(path.resolve("../html/index.html"));
-  //pool.query("Select * from keys").then((testData) => {
-  //  console.log(testData);
-  // res.send(testData.rows);
-  //});
+// Main Page
+app.get("/keys", (_, res) => {
+  res.sendFile(path.resolve("../frontend/html/home.html"));
+});
+
+app.get("/styles", (_, res) => {
+  res.sendFile(path.resolve("../frontend/styles.css"));
+});
+
+app.get("/main", (_, res) => {
+  res.sendFile(path.resolve("../frontend/main.js"));
+});
+
+// Registration Page
+app.get("/register", (_, res) => {
+  res.sendFile(path.resolve("../frontend/html/register.html"));
+});
+
+app.post("/register", async (req, res) => {
+  userController.register(req, res);
+});
+
+// Login Page
+app.get("/login", (_, res) => {
+  res.sendFile(path.resolve("../frontend/html/login.html"));
+});
+
+app.post("/login", async (req, res) => {
+  userController.login(req, res);
+});
+
+// Stats Page
+app.get("/stats", (_, res) => {
+  res.sendFile(path.resolve("../frontend/html/stats.html"));
 });
 
 const client = require("./configs/database");
@@ -66,9 +93,19 @@ app.get("/register", function (req, res) {
   res.sendFile(path.resolve("../html/register.html"));
 });
 
-app.post("/process_registration", urlencodedParser, function (req, res) {
-  register.register(req, res);
+app.post("/register", async (req, res) => {
+  userController.register(req, res);
 });
+
+const db = require("./model/index");
+db.sequelize
+  .sync()
+  .then(() => {
+    console.log("Synced db.");
+  })
+  .catch((err) => {
+    console.log("Failed to sync db: " + err.message);
+  });
 
 app.listen(port, () => {
   console.log(`Here we go, Engines started at ${port}.`);

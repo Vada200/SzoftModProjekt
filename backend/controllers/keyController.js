@@ -1,17 +1,38 @@
-/*const Key = require("../routes/key");
+const db = require("../model/index.js");
+const Key = db.keys;
+const Op = db.Sequelize.Op;
 
-async function getKeys(req, res) {
-  try {
-    const keys = await Key.findAll();
+// Retrieve all Keys from the database.
+exports.findAll = (_, res) => {
 
-    res.writeHead(200, { "Content-Type": "application/json" });
-    res.end(JSON.stringify(keys));
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-module.exports = {
-  getKeys,
+  Key.findAll()
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message,
+      });
+    });
 };
-*/
+
+// Find a single Key with an id
+exports.findOne = (req, res) => {
+  const keyId = req.params.keyId;
+
+  Key.findById(keyId)
+    .then((data) => {
+      if (data) {
+        res.send(data);
+      } else {
+        res.status(404).send({
+          message: `Cannot find key with id=${keyId}`,
+        });
+      }
+    })
+    .catch((_) => {
+      res.status(500).send({
+        message: `Error retrieving Key with id=${keyId}`,
+      });
+    });
+};
