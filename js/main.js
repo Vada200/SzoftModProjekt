@@ -140,29 +140,19 @@ function formComplete(admitKey) {
   }, 1000);
 }
 
-document.querySelector(".button2").onmousemove = function (e) {
+$(".button").off("mousemove").on("mousemove", function (e) {
   var x = e.pageX - e.target.offsetLeft;
   var y = e.pageY - e.target.offsetTop;
 
   e.target.style.setProperty("--x", x + "px");
   e.target.style.setProperty("--y", y + "px");
-};
+});
 
-document.querySelector(".button").onmousemove = function (e) {
-  var x = e.pageX - e.target.offsetLeft;
-  var y = e.pageY - e.target.offsetTop;
-
-  e.target.style.setProperty("--x", x + "px");
-  e.target.style.setProperty("--y", y + "px");
-};
-
-document.getElementById("statsPageButton").onclick = function () {
-  location.href = "stats.html";
-};
-
-document.getElementById("homePageButton").onclick = function () {
-  location.href = "home.html";
-};
+$("#statsPageButton").off("click").on("click", function () {
+  $("#container").hide(100);
+  $("#stats").show(100);
+  //location.href = "stats.html";
+});
 
 adminBtn.onmousemove = function (e) {
   var x = e.pageX - e.target.offsetLeft;

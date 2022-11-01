@@ -22,6 +22,15 @@ h1.logo {
   align-items: center;
 }
 
+.tablee {
+  border-right: 1px solid;
+}
+
+#statsPageButton {
+  margin-right:  20px;
+  margin-left: -20px;
+}
+
 h1.end {
   position: relative;
   color: #fff;
@@ -145,7 +154,7 @@ table {
   margin-top: 20px;
   position: relative;
   width: 70%;
-  min-width: 652px;
+  min-width: 653px;
   box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.1),
     0 6px 10px 5px rgba(0, 0, 0, 0.1), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
   transition: transform 0.1s ease-in-out;
@@ -157,7 +166,7 @@ table {
   margin-top: 10px;
   position: relative;
   width: 70%;
-  min-width: 652px;
+  min-width: 653px;
   box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.1),
     0 6px 10px 5px rgba(0, 0, 0, 0.1), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
   transition: transform 0.1s ease-in-out;
@@ -228,6 +237,9 @@ table {
 }
 
 @media only screen and (max-width: 652px) {
+  .tablee {
+    border-right: none;
+  }
   #table-box {
     flex-direction: column;
   }
