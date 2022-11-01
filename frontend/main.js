@@ -159,10 +159,6 @@ document.getElementById("statsPageButton").onclick = function () {
   location.href = "stats";
 };
 
-document.getElementById("homePageButton").onclick = function () {
-  location.href = "keys";
-};
-
 adminBtn.onmousemove = function (e) {
   var x = e.pageX - e.target.offsetLeft;
   var y = e.pageY - e.target.offsetTop;
