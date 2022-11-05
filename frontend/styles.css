@@ -124,6 +124,7 @@ h1.end {
   transition: width 0.5s ease-in-out;
 }
 
+
 .close #next-btn,
 .close #prev-btn {
   color: #fff;
@@ -253,4 +254,7 @@ table {
 
 .clickable {
   cursor: pointer;
+  border: white;
+  
 }
+

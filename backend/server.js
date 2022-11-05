@@ -73,6 +73,10 @@ app.get("/stats", (_, res) => {
   res.sendFile(path.resolve("../frontend/html/stats.html"));
 });
 
+app.get("/backToHome", (_, res) => {
+  res.sendFile(path.resolve("../frontend/backToHome.js"));
+});
+
 const client = require("./configs/database");
 
 client.connect((err) => {
