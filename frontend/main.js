@@ -90,7 +90,6 @@ function validate() {
 // Field Input Fail
 function inputFail() {
   formBox.className = "error";
-  
 }
 
 // Field Input Passed
@@ -180,7 +179,7 @@ clickableButtons.forEach((clickable) => {
 
 adminBtn.addEventListener("click", function () {
   const collection = previousRow.getElementsByTagName("td");
-  
+
   // Check if name is filled
   validate();
   if (inputField.value.length < 1) {

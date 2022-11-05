@@ -7,7 +7,7 @@ Webes alkalmazás, amely segítségével a DE-IK épület kulcsait vehetjük fel
 Az oldal kötelez egy név megadására, illetve egy elérhető. vagy leadni kívánt kulcs kijelölésére. Hibaüzenet jelzi ha valamelyik lépés kimaradt. Ezután a *Take Over Key* gomb megnyomásával van lehetőség felvenni a kulcsot. Amennyiben leszeretnénk adni a kulcsot, azt a *Hand Over Key* gomb megnyomásával tehetjük meg. A felvétel időpontja automatikusan rögzítésre fog kerül.
 <br/><br/>
 
-![alt text](Pictures/uml.png)
+![alt text](pictures/uml.png)
 
 ## Funkcionalitás:  
 Aktor: Tanár
@@ -22,9 +22,9 @@ Ezt a sorában lévő ikon jelzi. Az elérhetőséget zöld pipa jelzi, ellenkez
 
 A programot HTML, CSS és JavaScript, valamint Bootstrap segítségével hoztuk létre. <br><br>
 
-![alt text](Pictures/frontend1.png)
+![alt text](pictures/frontend1.png)
 <br/><br/>
-![alt text](Pictures/frontend2.png)
+![alt text](pictures/frontend2.png)
 
 <br/><br/>
 ## Követelmény: 
