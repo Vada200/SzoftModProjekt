@@ -13,6 +13,10 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false,
       type: Sequelize.STRING,
     },
+    remote_available: {
+      allowNull: false,
+      type: Sequelize.BOOLEAN,
+    },
   });
 
   return Keys;

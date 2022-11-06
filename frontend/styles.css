@@ -27,7 +27,7 @@ h1.logo {
 }
 
 #statsPageButton {
-  margin-right:  20px;
+  margin-right: 20px;
   margin-left: -20px;
 }
 
@@ -124,7 +124,6 @@ h1.end {
   transition: width 0.5s ease-in-out;
 }
 
-
 .close #next-btn,
 .close #prev-btn {
   color: #fff;
@@ -151,6 +150,13 @@ table {
 
 #table-box {
   display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.table-wrapper {
+  display: flex;
   flex-direction: row;
   margin-top: 20px;
   position: relative;
@@ -160,18 +166,6 @@ table {
     0 6px 10px 5px rgba(0, 0, 0, 0.1), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
   transition: transform 0.1s ease-in-out;
 }
-
-#table-box2 {
-  display: flex;
-  flex-direction: row;
-  margin-top: 10px;
-  position: relative;
-  width: 70%;
-  min-width: 653px;
-  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.1),
-    0 6px 10px 5px rgba(0, 0, 0, 0.1), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
-  transition: transform 0.1s ease-in-out;
-} 
 
 #buttons {
   margin-top: 30px;
@@ -255,6 +249,4 @@ table {
 .clickable {
   cursor: pointer;
   border: white;
-  
 }
-

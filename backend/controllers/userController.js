@@ -12,7 +12,7 @@ exports.register = async (req, res) => {
     const arr = data.rows;
     if (arr.length != 0) {
       return res.status(400).json({
-        error: "Email already there, No need to register again.",
+        error: "User already registered!",
       });
     } else {
       bcrypt.hash(password, 10, (err, hash) => {
@@ -42,9 +42,7 @@ exports.register = async (req, res) => {
               });
             } else {
               flag = 1;
-              res
-                .status(200)
-                .send({ message: "User added to database, not verified" });
+              res.status(200).send({ message: "User added to database!" });
             }
           }
         );
@@ -77,14 +75,14 @@ exports.login = async (req, res) => {
     const user = data.rows;
     if (user.length === 0) {
       res.status(400).json({
-        error: "User is not registered, Sign Up first",
+        error: "Incorrect username or password!",
       });
     } else {
       bcrypt.compare(password, user[0].password, (err, result) => {
         //Comparing the hashed password
         if (err) {
           res.status(500).json({
-            error: "Server error",
+            error: "Server error!",
           });
         } else if (result === true) {
           //Checking if credentials match
@@ -102,7 +100,7 @@ exports.login = async (req, res) => {
           //Declaring the errors
           if (result != true)
             res.status(400).json({
-              error: "Enter correct password!",
+              error: "Incorrect username or password!",
             });
         }
       });

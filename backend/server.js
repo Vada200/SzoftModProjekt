@@ -77,6 +77,58 @@ app.get("/backToHome", (_, res) => {
   res.sendFile(path.resolve("../frontend/backToHome.js"));
 });
 
+app.get("/favicon", (_, res) => {
+  res.sendFile(path.resolve("../frontend/pictures/favicon.ico"));
+});
+
+app.get("/api/keys", async (req, res) => {
+  const testData = [
+    {
+      key_id: "IK-F01",
+      floor: "Ground floor",
+      key_availability: true,
+      remote_availability: true,
+    },
+    {
+      key_id: "IK-F02",
+      floor: "Ground floor",
+      key_availability: true,
+      remote_availability: true,
+    },
+    {
+      key_id: "IK-F02",
+      floor: "First floor",
+      key_availability: true,
+      remote_availability: true,
+    },
+  ];
+
+  let keyData;
+
+  pool.query("Select * from keys").then((keys) => {
+    keyData = keys.rows;
+    const mappedData = keyData.reduce((floors, currentFloor) => {
+      const floorName = currentFloor.floor;
+
+      const rooms = floors.find(
+        (definedFloor) => definedFloor.name === floorName
+      )?.rooms;
+      if (rooms) {
+        rooms.push(currentFloor);
+      } else {
+        floors.push({
+          name: floorName,
+          rooms: [currentFloor],
+        });
+      }
+
+      return floors;
+    }, []);
+
+    res.json(mappedData);
+  });
+});
+
 const client = require("./configs/database");
 
 client.connect((err) => {

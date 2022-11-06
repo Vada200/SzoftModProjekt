@@ -139,19 +139,23 @@ function formComplete(admitKey) {
   }, 1000);
 }
 
-$(".button").off("mousemove").on("mousemove", function (e) {
-  var x = e.pageX - e.target.offsetLeft;
-  var y = e.pageY - e.target.offsetTop;
+$(".button")
+  .off("mousemove")
+  .on("mousemove", function (e) {
+    var x = e.pageX - e.target.offsetLeft;
+    var y = e.pageY - e.target.offsetTop;
 
-  e.target.style.setProperty("--x", x + "px");
-  e.target.style.setProperty("--y", y + "px");
-});
+    e.target.style.setProperty("--x", x + "px");
+    e.target.style.setProperty("--y", y + "px");
+  });
 
-$("#statsPageButton").off("click").on("click", function () {
-  $("#container").hide(100);
-  $("#stats").show(100);
-  //location.href = "stats.html";
-});
+$("#statsPageButton")
+  .off("click")
+  .on("click", function () {
+    $("#container").hide(100);
+    $("#stats").show(100);
+    //location.href = "stats.html";
+  });
 
 adminBtn.onmousemove = function (e) {
   var x = e.pageX - e.target.offsetLeft;
@@ -235,4 +239,70 @@ submitBtn.addEventListener("click", function () {
   previousRow.getElementsByTagName("td")[availability].innerHTML = keyAvailable;
   previousRow = null;
   formComplete(false);
+});
+
+function createTable(floor) {
+  const table = document.createElement("table");
+  table.classList.add("table", "table-hover", "tablee");
+  const tableHead = createTableHeader();
+  const tableBody = createTableBody(floor);
+  table.append(tableHead, tableBody);
+  return table;
+}
+
+function createTableHeader() {
+  const tableHead = document.createElement("thead");
+  tableHead.innerHTML = `
+  <tr>
+    <th scope="col">Floor</th>
+    <th scope="col">Key Number</th>
+    <th scope="col">Available</th>
+    <th scope="col">Proj. ctrl</th>
+  </tr>
+  `;
+  return tableHead;
+}
+
+function createTableBody(floor) {
+  const tableBody = document.createElement("tbody");
+  tableBody.innerHTML = floor.rooms.map(createTableRow).join("\n");
+  return tableBody;
+}
+
+function createTableRow(room) {
+  const available = "&#x2714";
+  const unavailable = "&#x2716";
+  const availabilitySymbol = room.availability ? available : unavailable;
+  return `
+  <tr class="clickable" >
+    <td scope="row" >${room.floor}</td>
+    <td >${room.key_id}</td>
+    <td>${availabilitySymbol}</td>
+    <td><input type="checkbox"></td>
+  </tr>
+  <tr>
+    <td colspan="4" class="comment" >
+        Megjegyzés:  <input type="text" size="50">
+    </td>
+  </tr>
+  `;
+}
+
+async function fetchKeys() {
+  const keysResult = await fetch("/api/keys");
+  return keysResult.json();
+}
+
+fetchKeys().then((floors) => {
+  const tableContainer = document.getElementById("table-box");
+  let newDiv;
+  floors.forEach((floor, index) => {
+    const table = createTable(floor);
+    if (index % 2 === 0) {
+      newDiv = document.createElement("div");
+      newDiv.classList.add("table-wrapper");
+      tableContainer.append(newDiv);
+    }
+    newDiv.append(table);
+  });
 });
