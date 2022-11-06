@@ -4,14 +4,25 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="favicon">
+    <link rel="icon" type="image/x-icon" href="favicon" />
+    <link rel="stylesheet" href="/styles" />
     <title>Login</title>
   </head>
   <body>
+    <div class="topnav">
+      <a class="active" href="/">Home</a>
+      <a href="/keys">Keys</a>
+      <a href="/register">Register</a>
+      <a href="/login">Login</a>
+    </div>
     <form action="/login" method="POST">
       Email: <input type="text" name="email" /> <br />
       Password: <input type="password" name="password" />
       <input type="submit" value="Submit" /> <br />
     </form>
+    <a href="/register">You don't have an account? Register here.</a>
+    <div class="footer">
+      <p>Footer</p>
+    </div>
   </body>
 </html>

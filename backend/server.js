@@ -37,6 +37,11 @@ pool.connect((err, client, release) => {
   });
 });
 
+// Index Page
+app.get("/", (_, res) => {
+  res.sendFile(path.resolve("../frontend/html/index.html"));
+});
+
 // Main Page
 app.get("/keys", (_, res) => {
   res.sendFile(path.resolve("../frontend/html/home.html"));
@@ -47,7 +52,7 @@ app.get("/styles", (_, res) => {
 });
 
 app.get("/main", (_, res) => {
-  res.sendFile(path.resolve("../frontend/main.js"));
+  res.sendFile(path.resolve("../frontend/js/main.js"));
 });
 
 // Registration Page
