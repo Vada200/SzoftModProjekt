@@ -10,7 +10,7 @@ exports.register = async (req, res) => {
       email,
     ]); //Checking if user already exists
     const arr = data.rows;
-    if (arr.length != 0) {
+    if (arr.length !== 0) {
       return res.status(400).json({
         error: "User already registered!",
       });
@@ -26,7 +26,7 @@ exports.register = async (req, res) => {
           email,
           password: hash,
         };
-        var flag = 1; //Declaring a flag
+        let flag = 1; //Declaring a flag
 
         //Inserting data into the database
 
@@ -46,6 +46,7 @@ exports.register = async (req, res) => {
             }
           }
         );
+        // TODO: Email verification
         if (flag) {
           const token = jwt.sign(
             //Signing a jwt token
@@ -98,7 +99,7 @@ exports.login = async (req, res) => {
           });
         } else {
           //Declaring the errors
-          if (result != true)
+          if (result !== true)
             res.status(400).json({
               error: "Incorrect username or password!",
             });

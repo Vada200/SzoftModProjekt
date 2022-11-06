@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-  const Users = sequelize.define("user", {
+  return sequelize.define("user", {
     id: {
       allowNull: false,
       autoIncrement: true,
@@ -29,6 +29,4 @@ module.exports = (sequelize, Sequelize) => {
       default: false,
     },
   });
-
-  return Users;
 };

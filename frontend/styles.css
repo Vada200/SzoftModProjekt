@@ -42,7 +42,6 @@ h1.end {
   height: 35vh;
   display: flex;
   flex-direction: column;
-  justify-content: top;
   align-items: center;
 }
 
@@ -197,6 +196,8 @@ table {
   position: relative;
   pointer-events: none;
 }
+
+/*noinspection CssUnresolvedCustomProperty*/
 .button::before {
   --size: 0;
   content: "";

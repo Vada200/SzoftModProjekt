@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-  const Keys = sequelize.define("key", {
+  return sequelize.define("key", {
     keyId: {
       primaryKey: true,
       allowNull: false,
@@ -18,6 +18,4 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.BOOLEAN,
     },
   });
-
-  return Keys;
 };

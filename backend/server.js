@@ -61,7 +61,7 @@ app.get("/register", (_, res) => {
 });
 
 app.post("/register", async (req, res) => {
-  userController.register(req, res);
+  await userController.register(req, res);
 });
 
 // Login Page
@@ -70,7 +70,7 @@ app.get("/login", (_, res) => {
 });
 
 app.post("/login", async (req, res) => {
-  userController.login(req, res);
+  await userController.login(req, res);
 });
 
 // Stats Page
@@ -86,28 +86,11 @@ app.get("/favicon", (_, res) => {
   res.sendFile(path.resolve("../frontend/pictures/favicon.ico"));
 });
 
-app.get("/api/keys", async (req, res) => {
-  const testData = [
-    {
-      key_id: "IK-F01",
-      floor: "Ground floor",
-      key_availability: true,
-      remote_availability: true,
-    },
-    {
-      key_id: "IK-F02",
-      floor: "Ground floor",
-      key_availability: true,
-      remote_availability: true,
-    },
-    {
-      key_id: "IK-F02",
-      floor: "First floor",
-      key_availability: true,
-      remote_availability: true,
-    },
-  ];
+app.get("/generateTables", (_, res) => {
+  res.sendFile(path.resolve("../frontend/js/generateTables.js"));
+});
 
+app.get("/api/keys", async (req, res) => {
   let keyData;
 
   pool.query("Select * from keys").then((keys) => {
