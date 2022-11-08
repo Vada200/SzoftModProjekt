@@ -30,6 +30,10 @@ h1.logo {
   margin-right: 20px;
   margin-left: -20px;
 }
+#keysPageButton {
+  margin-left: 20px;
+  margin-right: -20px;
+}
 
 h1.end {
   position: relative;
@@ -277,7 +281,7 @@ table {
 
 /* Add an active class to highlight the current page */
 .topnav a.active {
-  background-color: #04aa6d;
+  background-color: #225a8b;
   color: white;
 }
 
@@ -291,7 +295,7 @@ table {
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: red;
+  background-color: #225a8b;
   color: white;
   text-align: center;
 }

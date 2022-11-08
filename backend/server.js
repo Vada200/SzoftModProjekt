@@ -51,8 +51,16 @@ app.get("/styles", (_, res) => {
   res.sendFile(path.resolve("../frontend/styles.css"));
 });
 
+app.get("/registerstyle", (_, res) => {
+  res.sendFile(path.resolve("../frontend/register.css"));
+});
+
 app.get("/main", (_, res) => {
   res.sendFile(path.resolve("../frontend/js/main.js"));
+});
+
+app.get("/regi", (_, res) => {
+  res.sendFile(path.resolve("../frontend/js/register.js"));
 });
 
 // Registration Page

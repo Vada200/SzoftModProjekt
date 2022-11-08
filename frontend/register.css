@@ -1,0 +1,55 @@
+#registerpage{
+    display: flex;
+    height: 50vh;
+    justify-content: center;
+    align-items: center;
+}
+
+#registerForm{
+    border-radius: 15px;
+    background-color: #225a8b;
+    height: 60vh;
+    width: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#logo-box{
+    justify-content: center;
+    height: 20vh;
+}
+
+.input-box{
+    width: 40vh;
+}
+
+.details{
+ color: black;
+}
+
+::placeholder {
+    color: #222222;
+  }
+
+.input-box input{
+    margin-top: 5px;
+    margin-bottom: 10px;
+    height: 35px;
+    background-color: #225a8b;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 1.5px solid black;
+    padding-left: 15px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.input-box input:focus{
+    border-color: #ccc;
+    border-bottom-width: 3px;
+    border-right-width: 3px;
+}

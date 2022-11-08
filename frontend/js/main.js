@@ -151,12 +151,24 @@ $(".button")
     e.target.style.setProperty("--y", y + "px");
   });
 
+  //go to stats page (hide keys page)
 $("#statsPageButton")
   .off("click")
   .on("click", function () {
-    $("#container").hide(100);
-    $("#stats").show(100);
-    //location.href = "stats.html";
+    $(".keyscontainer").hide(100);
+    $("#statsPageButton").hide(100);
+    $("#keysPageButton").show(100);
+    $(".statscontainer").show(100);
+  });
+
+  //go to keys page (hide stats page)
+$("#keysPageButton")
+  .off("click")
+  .on("click", function () {
+    $(".keyscontainer").show(100);
+    $("#statsPageButton").show(100);
+    $("#keysPageButton").hide(100);
+    $(".statscontainer").hide(100);
   });
 
 adminBtn.onmousemove = function (e) {

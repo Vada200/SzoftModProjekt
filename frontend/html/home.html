@@ -31,6 +31,7 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
+  
   <body>
     <div class="topnav">
       <a class="active" href="/">Home</a>
@@ -39,13 +40,19 @@
       <a href="/login">Login</a>
     </div>
     <div id="logo-box">
-      <div class="col"></div>
+      <div class="col">
+        <button id="keysPageButton" class="button submit-button col" style="display:none">
+        <span><b>Keys page</b></span>
+        </button>
+      </div>
       <h1 class="logo col-8">Key Sorter</h1>
-      <button id="statsPageButton" class="button submit-button col">
+      <div class="col">
+        <button id="statsPageButton" class="button submit-button col">
         <span><b>Stats page</b></span>
-      </button>
+        </button>
+      </div>
     </div>
-    <div id="container">
+    <div id="container" class="keyscontainer">
       <div id="form-box">
         <i id="prev-btn" class="fas fa-arrow-left"></i>
         <div id="input-group">
@@ -66,6 +73,10 @@
           <span><b>Hand Over Key</b></span>
         </button>
       </div>
+    </div>
+    <div id="container" class="statscontainer" style="display:none">
+        <h1>ide kell majd a stats page</h1>
+        <h1>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta, sequi quis? Ratione tenetur placeat, at pariatur necessitatibus magni laboriosam fugiat eveniet nulla earum tempore, repellat qui est molestiae temporibus beatae!</h1>
     </div>
     <div class="footer">
       <p>Footer</p>
