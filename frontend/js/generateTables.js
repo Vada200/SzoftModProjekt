@@ -29,14 +29,14 @@ function createTableBody(floor) {
 function createTableRow(room) {
   const available = "&#x2716";
   const unavailable = "&#x2714";
-  const availabilitySymbol = room.availability ? available : unavailable;
+  const availabilitySymbol = room.key_availability ? available : unavailable;
   return `
   <tr class="clickable" >
     <td>${room.floor}</td>
     <td>${room.key_id}</td>
     <td>${availabilitySymbol}</td>
     <td><input type="checkbox"></td>
-    <tr class="clickable">
+    <tr>
       <td colspan="4" class="comment" >
           Megjegyzés:  <input type="text" size="50">
       </td>
@@ -50,8 +50,8 @@ async function fetchKeys() {
   return keysResult.json();
 }
 
-export function generateTables() {
-  fetchKeys().then((floors) => {
+export async function generateTables() {
+  await fetchKeys().then((floors) => {
     const tableContainer = document.getElementById("table-box");
     let newDiv;
     floors.forEach((floor, index) => {

@@ -10,8 +10,12 @@ const switchTime = 200; // Transition Between Questions
 // Init Position At First Question
 let position = 0;
 
-// Third element index
-const availability = 2;
+// Element indexes
+const floorIndex = 0;
+const keyIdIndex = 1;
+const availabilityIndex = 2;
+const remoteAvailabilityIndex = 3;
+const commentIndex = 4;
 
 // Key taken sign
 const keyTaken = "✖";
@@ -26,9 +30,9 @@ const inputField = document.querySelector("#input-field");
 const inputLabel = document.querySelector("#input-label");
 const inputProgress = document.querySelector("#input-progress");
 const progress = document.querySelector("#progress-bar");
-const adminBtn = document.querySelector(".button1");
-const submitBtn = document.querySelector(".button2");
-const clickableButtons = document.querySelectorAll(".clickable");
+const adminBtn = document.getElementById("admit-btn");
+const submitBtn = document.getElementById("submit-btn");
+const nameField = document.getElementById("input-field");
 let previousRow = null;
 
 // EVENTS
@@ -151,7 +155,7 @@ $(".button")
     e.target.style.setProperty("--y", y + "px");
   });
 
-  //go to stats page (hide keys page)
+//go to stats page (hide keys page)
 $("#statsPageButton")
   .off("click")
   .on("click", function () {
@@ -161,7 +165,7 @@ $("#statsPageButton")
     $(".statscontainer").show(100);
   });
 
-  //go to keys page (hide stats page)
+//go to keys page (hide stats page)
 $("#keysPageButton")
   .off("click")
   .on("click", function () {
@@ -178,22 +182,6 @@ adminBtn.onmousemove = function (e) {
   e.target.style.setProperty("--x", x + "px");
   e.target.style.setProperty("--y", y + "px");
 };
-
-clickableButtons.forEach((clickable) => {
-  clickable.addEventListener("click", function () {
-    const collection = clickable.getElementsByTagName("td");
-    if (previousRow !== null) {
-      previousRow.style.backgroundColor = "";
-      previousRow = null;
-    }
-    previousRow = clickable;
-    if (collection[availability].innerHTML === keyTaken) {
-      clickable.style.backgroundColor = "#FF5734"; // light-green
-      return;
-    }
-    clickable.style.backgroundColor = "#90EE90"; //light-red
-  });
-});
 
 adminBtn.addEventListener("click", function () {
   const collection = previousRow.getElementsByTagName("td");
@@ -213,14 +201,16 @@ adminBtn.addEventListener("click", function () {
   } else if (previousRow === null) {
     alert("No key was selected!");
     return;
-  } else if (collection[availability].innerHTML !== keyAvailable) {
+  } else if (collection[availabilityIndex].innerHTML !== keyAvailable) {
     alert("This key is not available!");
     return;
   }
 
+  handleDatabaseActions(collection, "admit");
+
   previousRow.style.backgroundColor = "";
-  previousRow.getElementsByTagName("td")[availability].innerHTML = keyTaken;
-  previousRow = null;
+  previousRow.getElementsByTagName("td")[availabilityIndex].innerHTML =
+    keyTaken;
 
   // Form Complete
   formComplete(true);
@@ -244,17 +234,106 @@ submitBtn.addEventListener("click", function () {
   } else if (previousRow === null) {
     alert("No key was selected!");
     return;
-  } else if (collection[availability].innerHTML !== keyTaken) {
+  } else if (collection[availabilityIndex].innerHTML !== keyTaken) {
     alert("This key is not taken!");
     return;
   }
 
+  handleDatabaseActions(collection, "submit");
+
   previousRow.style.backgroundColor = "";
-  previousRow.getElementsByTagName("td")[availability].innerHTML = keyAvailable;
-  previousRow = null;
+  previousRow.getElementsByTagName("td")[availabilityIndex].innerHTML =
+    keyAvailable;
+
   formComplete(false);
 });
 
-// Generate tables
-generateTables();
+const handleDatabaseActions = (collection, typeOfButton) => {
+  const keyData = {
+    keyAvailability: collection[availabilityIndex] === keyTaken,
+    remoteAvailability: collection[remoteAvailabilityIndex].firstChild.checked,
+    keyId: collection[keyIdIndex].innerHTML,
+  };
+
+  const actionData = {
+    userEmail: nameField.value,
+    keyId: keyData.keyId,
+    actionType: typeOfButton,
+    // TODO: Get comment value
+    //comment: collection.nextSibling.firstChild.textContent,
+    comment: null,
+  };
+
+  console.log(keyData);
+
+  // TODO: Handle non-existent user email
+  syncToDatabase(keyData).then((result) => {
+    console.log(result);
+    insertAction(actionData).then((res) => {
+      console.log(res);
+      previousRow = null;
+    });
+  });
+};
+
+const syncToDatabase = async (data) => {
+  const response = await fetch("/api/modifyKey", {
+    method: "POST",
+    mode: "cors",
+    cache: "no-cache",
+    credentials: "same-origin",
+
+    headers: {
+      "Content-Type": "application/json",
+    },
+    redirect: "follow",
+    referrerPolicy: "no-referrer",
+    body: JSON.stringify(data),
+  }).catch((error) => {
+    console.log("ERROR MODIFY:", error);
+  });
+  return response.json();
+};
+
+const insertAction = async (data) => {
+  const response = await fetch("/api/insertAction", {
+    method: "POST",
+    mode: "cors",
+    cache: "no-cache",
+    credentials: "same-origin",
+
+    headers: {
+      "Content-Type": "application/json",
+    },
+    redirect: "follow",
+    referrerPolicy: "no-referrer",
+    body: JSON.stringify(data),
+  }).catch((error) => {
+    console.log("ERROR INSERT:", error);
+  });
+  return response.json();
+};
+
+generateTables().then(() => {
+  const clickableRows = document.querySelectorAll(".clickable");
+  console.log(clickableRows);
+
+  // TODO: Select multiple rows, deselect rows
+  for (const clickable of clickableRows) {
+    clickable.addEventListener("click", () => {
+      const collection = clickable.getElementsByTagName("td");
+      //const commentLine = clickable.nextSibling;
+      if (previousRow !== null) {
+        previousRow.style.backgroundColor = "";
+        previousRow = null;
+      }
+      previousRow = clickable;
+      if (collection[availabilityIndex].innerHTML === keyTaken) {
+        clickable.style.backgroundColor = "#FF5734"; // light-green
+        return;
+      }
+      clickable.style.backgroundColor = "#90EE90"; //light-red
+    });
+  }
+});
 

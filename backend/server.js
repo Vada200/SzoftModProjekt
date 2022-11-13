@@ -3,11 +3,11 @@ require("dotenv").config();
 const cors = require("cors");
 const user = require("./routes/userRoutes");
 const path = require("path");
-const { getKeys } = require("./controllers/keyController");
 const app = express(); //Initialized express
 const port = process.env.PORT || 5000;
 const Pool = require("pg").Pool;
 const userController = require("./controllers/userController");
+const keyController = require("./controllers/keyController");
 
 app.use(express.json());
 app.use(cors());
@@ -79,6 +79,16 @@ app.get("/login", (_, res) => {
 
 app.post("/login", async (req, res) => {
   await userController.login(req, res);
+});
+
+// Modify Key
+app.post("/api/modifyKey", async (req, res) => {
+  await keyController.modifyKey(req, res);
+});
+
+// Insert Action
+app.post("/api/insertAction", async (req, res) => {
+  await keyController.insertAction(req, res);
 });
 
 // Stats Page
