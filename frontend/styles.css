@@ -172,6 +172,7 @@ table {
 
 #buttons {
   margin-top: 30px;
+  padding-bottom: 35px;
   width: 70%;
   display: flex;
   flex-direction: row;
@@ -299,3 +300,5 @@ table {
   color: white;
   text-align: center;
 }
+
+/*modal*/

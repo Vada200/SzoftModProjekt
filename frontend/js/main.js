@@ -257,3 +257,4 @@ submitBtn.addEventListener("click", function () {
 
 // Generate tables
 generateTables();
+

@@ -7,7 +7,7 @@
 
 #registerForm{
     border-radius: 15px;
-    background-color: #225a8b;
+    background-color: #F1F1E6;
     height: 60vh;
     width: 50vh;
     display: flex;
@@ -38,7 +38,7 @@
     margin-top: 5px;
     margin-bottom: 10px;
     height: 35px;
-    background-color: #225a8b;
+    background-color: white;
     width: 100%;
     outline: none;
     border-radius: 5px;
@@ -48,8 +48,28 @@
     transition: all 0.3s ease;
 }
 
+.input-box input::before{
+    content:'';
+    position:absolute;
+    top:-130px;
+    margin:auto;
+    display:block;
+    border-radius:50%;
+    width:300px;
+    height:300px;
+    left:-75px;
+    -webkit-transition:box-shadow .6s ease-in-out;
+    transition:box-shadow .6s ease-in-out;
+    z-index:-1;
+   
+  }
+
 .input-box input:focus{
-    border-color: #ccc;
-    border-bottom-width: 3px;
-    border-right-width: 3px;
+    background-color: #225a8b;
+    transition: ease-in-out;
+    color: white;
+}
+
+.input-box input:focus::placeholder{
+    color: white;
 }

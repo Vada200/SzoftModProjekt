@@ -31,6 +31,14 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
+
+  <script>
+    $(function () {
+      $("#CommentModal").off("hidden.bs.modal").on("hidden.bs.modal", function(){
+        $("#comment-textarea").val("");
+      });
+    });
+  </script>
   
   <body>
     <div class="topnav">
@@ -65,18 +73,41 @@
       <div id="table-box">
         <!-- Generated tables -->
       </div>
+      <!-- Buttons -->
       <div id="buttons">
-        <button class="button button1">
+        <button class="button button1" type="button">
           <span><b>Take Over Key</b></span>
         </button>
-        <button class="button button2">
+        <button id="modalButton" class="button button2" type="button" data-toggle="modal" data-target="#CommentModal">
           <span><b>Hand Over Key</b></span>
         </button>
       </div>
     </div>
+    <!-- Stats Page -->
     <div id="container" class="statscontainer" style="display:none">
         <h1>ide kell majd a stats page</h1>
         <h1>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta, sequi quis? Ratione tenetur placeat, at pariatur necessitatibus magni laboriosam fugiat eveniet nulla earum tempore, repellat qui est molestiae temporibus beatae!</h1>
+    </div>
+    <!-- modal -->
+    <div class="modal fade" id="CommentModal" role="document">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="commentModalTitle">Leave a comment</h5>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group mp-3">
+              <h6 class="modal-title" id="commentModalTitle">Comment:</h6>
+              <input type="text" name="comment" class="input input-sm form-control" id="comment-textarea"/>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-danger">Submit</button>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="footer">
       <p>Footer</p>
