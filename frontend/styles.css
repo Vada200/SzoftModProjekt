@@ -42,7 +42,7 @@ h1.end {
   transition: 0.8s ease-in-out;
 }
 
-#container {
+#content-container, #container {
   height: 35vh;
   display: flex;
   flex-direction: column;
@@ -156,6 +156,7 @@ table {
   flex-direction: column;
   width: 100%;
   align-items: center;
+  /* TODO */
 }
 
 .table-wrapper {
