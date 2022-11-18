@@ -6,7 +6,6 @@ const questions = [{ question: "Enter Your Name" }];
 
 // Transition Times
 const shakeTime = 100; // Shake Transition Time
-const switchTime = 200; // Transition Between Questions
 
 // Init Position At First Question
 let position = 0;
@@ -44,7 +43,7 @@ function getQuestion() {
   // Get Current Question
   inputLabel.innerHTML = questions[position].question;
   // Get Current Answer
-  inputField.value = questions[position].answer || "";
+  inputField.value = questions[position]?.answer || "";
   // Focus On Element
   inputField.focus();
 
@@ -59,7 +58,7 @@ function getQuestion() {
 
 // Display Question To User
 function showQuestion() {
-  inputGroup.style.opacity = 1;
+  inputGroup.style.opacity = "1";
   inputProgress.style.transition = "";
   inputProgress.style.width = "100%";
 }
@@ -110,7 +109,7 @@ function formComplete(admitKey) {
   }
   setTimeout(() => {
     formBox.parentElement.appendChild(h1);
-    setTimeout(() => (h1.style.opacity = 1), 50);
+    setTimeout(() => (h1.style.opacity = "1"), 50);
   }, 1000);
 }
 
@@ -248,7 +247,7 @@ const handleDatabaseActions = (actionType) => {
     remoteAvailability:
       actionType === "take"
         ? !document.getElementById("remote-checkbox").checked
-        : document.getElementById("remote-checkbox").checked,
+        : document.getElementById("remote-checkbox")?.checked || true,
     keyId: collection[keyIdIndex].innerHTML,
   };
 
@@ -258,16 +257,13 @@ const handleDatabaseActions = (actionType) => {
     comment: document.getElementById("comment-textarea").value,
   };
 
-  postToAPI(keyData, "modifyKey").then((result) => {
-    console.log(result);
+  postToAPI(keyData, "modifyKey").then(() => {
     if (actionType === "take") {
-      postToAPI(actionData, "insertAction").then((res) => {
-        console.log(res);
+      postToAPI(actionData, "insertAction").then(() => {
         window.location.reload();
       });
     } else {
-      postToAPI(actionData, "modifyAction").then((r) => {
-        console.log(r);
+      postToAPI(actionData, "modifyAction").then(() => {
         window.location.reload();
       });
     }
@@ -286,8 +282,8 @@ const postToAPI = async (data, address) => {
     redirect: "follow",
     referrerPolicy: "no-referrer",
     body: JSON.stringify(data),
-  }).catch((error) => {
-    console.log(error);
+  }).catch((err) => {
+    console.log(err);
   });
   return response.json();
 };

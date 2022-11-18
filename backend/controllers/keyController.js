@@ -1,8 +1,5 @@
-const db = require("../model/index.js");
 const client = require("../configs/database");
 const Action = require("../model/action");
-const Key = db.keys;
-const Op = db.Sequelize.Op;
 
 exports.modifyKey = (req, res) => {
   const { keyAvailability, remoteAvailability, keyId } = req.body;
@@ -55,7 +52,6 @@ exports.insertAction = async (req, res) => {
 
 exports.modifyAction = async (req, res) => {
   const { _, keyId, comment } = req.body;
-  console.log(keyId, comment);
   try {
     client.query(
       `UPDATE action SET given_timestamp=$1, given_comment=$2 WHERE key_id=$3 AND given_timestamp IS null;`,

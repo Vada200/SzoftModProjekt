@@ -62,4 +62,5 @@ export const generateTables = async () => {
       newDiv.append(table);
     });
   });
+  return true;
 };

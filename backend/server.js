@@ -1,7 +1,6 @@
 const express = require("express");
 require("dotenv").config();
 const cors = require("cors");
-const user = require("./routes/userRoutes");
 const path = require("path");
 const app = express(); //Initialized express
 const port = process.env.PORT || 5000;
@@ -28,12 +27,11 @@ pool.connect((err, client, release) => {
   if (err) {
     return console.error("Error acquiring client", err.stack);
   }
-  client.query("SELECT NOW()", (err, result) => {
+  client.query("SELECT NOW()", (err) => {
     release();
     if (err) {
       return console.error("Error executing query", err.stack);
     }
-    console.log("Connected to Database !");
   });
 });
 
@@ -157,14 +155,9 @@ client.connect((err) => {
 
   if (err) {
     console.log(err);
-  } else {
-    console.log("Data logging initiated!");
   }
 });
 
-app.use("/users", user); //Route for /users endpoint of API
-
-const urlencodedParser = bodyParser.urlencoded({ extended: false });
 app.use(express.static("public"));
 app.get("/register", function (req, res) {
   res.sendFile(path.resolve("../html/register.html"));
@@ -174,16 +167,4 @@ app.post("/register", async (req, res) => {
   await userController.register(req, res);
 });
 
-const db = require("./model/index");
-db.sequelize
-  .sync()
-  .then(() => {
-    console.log("Synced db.");
-  })
-  .catch((err) => {
-    console.log("Failed to sync db: " + err.message);
-  });
-
-app.listen(port, () => {
-  console.log(`Here we go, Engines started at ${port}.`);
-});
+app.listen(port, () => {});
