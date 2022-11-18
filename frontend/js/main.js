@@ -287,3 +287,10 @@ const postToAPI = async (data, address) => {
   });
   return response.json();
 };
+
+//modal
+$('#action-btn').on('click', function(){
+  if($("#input-field").val() != "" ) {
+   $('#CommentModal').modal('toggle');
+  }
+});

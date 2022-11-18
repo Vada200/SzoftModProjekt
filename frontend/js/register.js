@@ -7,3 +7,4 @@ $(".button")
     e.target.style.setProperty("--x", x + "px");
     e.target.style.setProperty("--y", y + "px");
   });
+  

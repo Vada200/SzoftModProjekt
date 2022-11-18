@@ -49,19 +49,19 @@
       <form id="registerForm" action="/register" method="POST">
         <div class="input-box">
           <span class="details"><b>First Name: </b></span>
-          <input type="text" name="first_name" placeholder="Enter your first name"/>
+          <input type="text" name="first_name" placeholder="Enter your first name" required/>
         </div>
         <div class="input-box">
           <span class="details"><b>Last Name: </b></span>
-          <input type="text" name="last_name" placeholder="Enter your last name"/>
+          <input type="text" name="last_name" placeholder="Enter your last name" required/>
         </div>
         <div class="input-box">
           <span class="details"><b>E-mail: </b></span>
-          <input type="text" name="email" placeholder="Enter your e-mail address"/>
+          <input type="email" name="email" placeholder="Enter your e-mail address" required/>
         </div>
         <div class="input-box">
           <span class="details"><b>Password: </b></span>
-          <input type="password" name="password" placeholder="Enter your password"/>
+          <input type="password" name="password" placeholder="Enter your password" required/>
         </div>
         <div>
           <input class="button" type="submit" value="Submit"/>
