@@ -40,6 +40,23 @@ app.get("/", (_, res) => {
   res.sendFile(path.resolve("../frontend/html/index.html"));
 });
 
+app.get("/bgpic", (_, res) => {
+  res.sendFile(path.resolve("../frontend/pictures/ik_epulet.png"));
+});
+
+app.get("/logicon", (_, res) => {
+  res.sendFile(path.resolve("../frontend/pictures/logi.png"));
+});
+
+app.get("/regicon", (_, res) => {
+  res.sendFile(path.resolve("../frontend/pictures/regi.png"));
+});
+
+app.get("/keysicon", (_, res) => {
+  res.sendFile(path.resolve("../frontend/pictures/keyspic.png"));
+});
+
+
 // Main Page
 app.get("/keys", (_, res) => {
   res.sendFile(path.resolve("../frontend/html/home.html"));

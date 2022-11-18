@@ -306,3 +306,28 @@ td, tr, th {
   vertical-align: middle;
   text-align: center;
 }
+
+.homepager {
+  background-image: url(/bgpic) !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  min-height: 100% ;
+  background-position: center center !important;
+  background-attachment: fixed !important;
+
+}
+
+.main-title {
+  position: relative;
+  text-align: center;
+  color: white;
+  padding-top: 2%;
+  padding-bottom: 5%;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+  font-family: "Monserrat", sans-serif;
+}
+
+.card {
+  margin: 0 auto;
+  float: none;
+}
