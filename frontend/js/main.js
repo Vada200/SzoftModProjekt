@@ -1,4 +1,5 @@
 import { generateTables } from "./generateTables";
+import { generateStatsTable } from "./statsPageQuery";
 
 // Questions Array
 const questions = [{ question: "Enter Your Name" }];
@@ -142,6 +143,8 @@ $("#keysPageButton")
     $("#keysPageButton").hide(100);
     $(".statscontainer").hide(100);
   });
+
+generateStatsTable();
 
 generateTables().then(() => {
   const clickableRows = document.querySelectorAll(".clickable");

@@ -113,6 +113,10 @@ app.get("/generateTables", (_, res) => {
   res.sendFile(path.resolve("../frontend/js/generateTables.js"));
 });
 
+app.get("/statsPageQuery", (_, res) => {
+  res.sendFile(path.resolve("../frontend/js/statsPageQuery.js"));
+});
+
 app.get("/api/keys", async (req, res) => {
   let keyData;
 
@@ -137,6 +141,12 @@ app.get("/api/keys", async (req, res) => {
     }, []);
 
     res.json(mappedData);
+  });
+});
+
+app.get("/api/actions", async (req, res) => {
+  pool.query("SELECT * FROM action ORDER BY id").then((actions) => {
+    res.json(actions.rows);
   });
 });
 

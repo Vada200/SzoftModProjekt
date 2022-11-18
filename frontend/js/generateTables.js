@@ -1,13 +1,13 @@
-function createTable(floor) {
+const createTable = (floor) => {
   const table = document.createElement("table");
   table.classList.add("table", "table-hover", "tablee");
   const tableHead = createTableHeader();
   const tableBody = createTableBody(floor);
   table.append(tableHead, tableBody);
   return table;
-}
+};
 
-function createTableHeader() {
+const createTableHeader = () => {
   const tableHead = document.createElement("thead");
   tableHead.innerHTML = `
   <tr>
@@ -18,15 +18,15 @@ function createTableHeader() {
   </tr>
   `;
   return tableHead;
-}
+};
 
-function createTableBody(floor) {
+const createTableBody = (floor) => {
   const tableBody = document.createElement("tbody");
   tableBody.innerHTML = floor.rooms.map(createTableRow).join("\n");
   return tableBody;
-}
+};
 
-function createTableRow(room) {
+const createTableRow = (room) => {
   const available = "✔";
   const unavailable = "✖";
   const keyAvailabilitySymbol = room.key_availability ? available : unavailable;
@@ -41,14 +41,14 @@ function createTableRow(room) {
     <td>${remoteAvailabilitySymbol}</td>
   </tr>
   `;
-}
+};
 
-async function fetchKeys() {
+const fetchKeys = async () => {
   const keysResult = await fetch("/api/keys");
   return keysResult.json();
-}
+};
 
-export async function generateTables() {
+export const generateTables = async () => {
   await fetchKeys().then((floors) => {
     const tableContainer = document.getElementById("table-box");
     let newDiv;
@@ -62,4 +62,4 @@ export async function generateTables() {
       newDiv.append(table);
     });
   });
-}
+};
