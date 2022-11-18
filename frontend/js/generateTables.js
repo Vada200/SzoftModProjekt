@@ -13,8 +13,8 @@ function createTableHeader() {
   <tr>
     <th scope="col">Floor</th>
     <th scope="col">Key Number</th>
-    <th scope="col">Available</th>
-    <th scope="col">Proj. ctrl</th>
+    <th scope="col">Key Available</th>
+    <th scope="col">Remote Available</th>
   </tr>
   `;
   return tableHead;
@@ -27,20 +27,18 @@ function createTableBody(floor) {
 }
 
 function createTableRow(room) {
-  const available = "&#x2716";
-  const unavailable = "&#x2714";
-  const availabilitySymbol = room.key_availability ? available : unavailable;
+  const available = "✔";
+  const unavailable = "✖";
+  const keyAvailabilitySymbol = room.key_availability ? available : unavailable;
+  const remoteAvailabilitySymbol = room.remote_availability
+    ? available
+    : unavailable;
   return `
   <tr class="clickable" >
     <td>${room.floor}</td>
     <td>${room.key_id}</td>
-    <td>${availabilitySymbol}</td>
-    <td><input type="checkbox"></td>
-    <tr>
-      <td colspan="4" class="comment" >
-          Megjegyzés:  <input type="text" size="50">
-      </td>
-    </tr>
+    <td>${keyAvailabilitySymbol}</td>
+    <td>${remoteAvailabilitySymbol}</td>
   </tr>
   `;
 }

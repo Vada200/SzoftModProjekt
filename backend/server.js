@@ -91,6 +91,11 @@ app.post("/api/insertAction", async (req, res) => {
   await keyController.insertAction(req, res);
 });
 
+// Insert Action
+app.post("/api/modifyAction", async (req, res) => {
+  await keyController.modifyAction(req, res);
+});
+
 // Stats Page
 app.get("/stats", (_, res) => {
   res.sendFile(path.resolve("../frontend/html/stats.html"));
@@ -111,7 +116,7 @@ app.get("/generateTables", (_, res) => {
 app.get("/api/keys", async (req, res) => {
   let keyData;
 
-  pool.query("Select * from keys").then((keys) => {
+  pool.query("SELECT * FROM keys ORDER BY key_id").then((keys) => {
     keyData = keys.rows;
     const mappedData = keyData.reduce((floors, currentFloor) => {
       const floorName = currentFloor.floor;
@@ -156,7 +161,7 @@ app.get("/register", function (req, res) {
 });
 
 app.post("/register", async (req, res) => {
-  userController.register(req, res);
+  await userController.register(req, res);
 });
 
 const db = require("./model/index");

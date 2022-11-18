@@ -301,3 +301,8 @@ table {
 #comment-textarea {
   margin-top: 2vh;
 }
+
+td, tr, th {
+  vertical-align: middle;
+  text-align: center;
+}
