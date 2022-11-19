@@ -113,16 +113,6 @@ function formComplete(admitKey) {
   }, 1000);
 }
 
-$(".button")
-  .off("mousemove")
-  .on("mousemove", function (e) {
-    const x = e.pageX - e.target.offsetLeft;
-    const y = e.pageY - e.target.offsetTop;
-
-    e.target.style.setProperty("--x", x + "px");
-    e.target.style.setProperty("--y", y + "px");
-  });
-
 //go to stats page (hide keys page)
 $("#statsPageButton")
   .off("click")
@@ -172,13 +162,30 @@ generateTables().then(() => {
   }
 });
 
-actionBtn.onmousemove = function (e) {
+$("#action-btn").on("mousemove", function (e) {
   const x = e.pageX - e.target.offsetLeft;
   const y = e.pageY - e.target.offsetTop;
 
   e.target.style.setProperty("--x", x + "px");
   e.target.style.setProperty("--y", y + "px");
-};
+});
+
+$("#keysPageButton").on("mousemove", function (e) {
+  const x = e.pageX - e.target.offsetLeft;
+  const y = e.pageY - e.target.offsetTop;
+
+  e.target.style.setProperty("--x", x + "px");
+  e.target.style.setProperty("--y", y + "px");
+});
+
+$("#statsPageButton").on("mousemove", function (e) {
+  const x = e.pageX - e.target.offsetLeft;
+  const y = e.pageY - e.target.offsetTop;
+
+  e.target.style.setProperty("--x", x + "px");
+  e.target.style.setProperty("--y", y + "px");
+  console.log("fityma");
+});
 
 actionBtn.addEventListener("click", () => {
   // Check if name is filled

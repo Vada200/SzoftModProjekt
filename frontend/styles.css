@@ -327,7 +327,15 @@ td, tr, th {
   font-family: "Monserrat", sans-serif;
 }
 
-.card {
+/* Home Page */
+.card {  
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 0 auto;
   float: none;
+  text-align: center;
+  background-color: #428bca !important;
+  height: 67vh !important;
+  width: 40vh !important;
 }

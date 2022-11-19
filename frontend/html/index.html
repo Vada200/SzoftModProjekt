@@ -1,36 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/styles" />
-    <link rel="icon" type="image/x-icon" href="favicon" />
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/styles"/>
+    <link rel="icon" type="image/x-icon" href="favicon"/>
     <title>DE-IK Key Sorter</title>
     <link
-    rel="stylesheet"
-    href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
-    integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
-    crossorigin="anonymous"
-  />
-  <script
-    src="https://code.jquery.com/jquery-3.3.1.js"
-    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-    crossorigin="anonymous"
-  ></script>
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
-    crossorigin="anonymous"
-  />
-  <link
-    href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-    rel="stylesheet"
-    id="bootstrap-css"
-  />
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+      integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.js"
+      integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="favicon"/>
+    <link rel="stylesheet" href="/registerstyle"/>
+    <link rel="stylesheet" href="/styles"/>
   </head>
   <body class="homepager">
     <!-- <div class="topnav">
@@ -42,45 +45,52 @@
     <div >
       <h1 class="main-title">Welcome to DE-IK Key Sorter!</h1>
     </div>
-
-  <div class="cards">
-    <div class="row">
-      <div class="col-md-2 mx-auto">
-        <div class="card" style="width: 15rem;">
-          <img src="/regicon" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Registration</h5>
-            <p class="card-text">If you don't have an account yet. You have to register first.</p>
-            <a href="/register" class="btn btn-primary">Register here.</a>
+    
+    <div class="cards">
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <img src="/regicon" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Registration</h5>
+              <p class="card-text">If you don't have an account yet. You have to register first.</p>
+              <button class="button" type="button" onclick="location.href='/register'">
+                <span><b>Register here</b></span>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-2 mx-auto">
-        <div class="card" style="width: 15rem;">
-          <img src="/logicon" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Login</h5>
-            <p class="card-text">If you already have an account you can Login</p>
-            <a href="/login" class="btn btn-primary">Login here.</a>
+        <div class="col">
+          <div class="card">
+            <img src="/logicon" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Login</h5>
+              <p class="card-text">If you already have an account you can Login</p>
+              <button id="action-btn" class="button" type="button" onclick="location.href='/login'">
+                <span><b>Login here</b></span>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-2 mx-auto">
-        <div class="card" style="width: 15rem;">
-          <img src="/keysicon" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Registration</h5>
-            <p class="card-text">If you just curious what keys are available you can check them</p>
-            <a href="/keys" class="btn btn-primary">Check the keys</a>
+        <div class="col">
+          <div class="card">
+            <img src="/keysicon" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Keys</h5>
+              <p class="card-text">If you just curious what keys are available you can check them</p>
+              <button id="action-btn" class="button" type="button" onclick="location.href='/keys'">
+                <span><b>Check the keys</b></span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
     
     <!-- <div class="footer">
       <p>Footer</p>
     </div> -->
   </body>
+  <script type="module" src="/regi"></script>
   <script type="text/javascript" src="https://livejs.com/live.js"></script>
 </html>
