@@ -74,8 +74,9 @@ app.get("/main", (_, res) => {
   res.sendFile(path.resolve("../frontend/js/main.js"));
 });
 
-app.get("/regi", (_, res) => {
-  res.sendFile(path.resolve("../frontend/js/register.js"));
+// Home Page
+app.get("/page", (_, res) => {
+  res.sendFile(path.resolve("../frontend/js/page.js"));
 });
 
 // Registration Page

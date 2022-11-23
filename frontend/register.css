@@ -35,7 +35,7 @@
 
 .input-box input{
     margin-top: 5px;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     height: 35px;
     background-color: white;
     width: 100%;
@@ -71,4 +71,11 @@
 
 .input-box input:focus::placeholder{
     color: white;
+}
+
+#result {
+    color: red;
+    font-weight: bold;
+    margin: 0;
+    font-size: 95%;
 }

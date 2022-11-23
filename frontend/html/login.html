@@ -33,7 +33,21 @@
     <link rel="stylesheet" href="/styles"/>
     <title>Login</title>
   </head>
-  <body>
+  <script>
+      function ValidateEmail(inputText) {
+        var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (inputText.value.match(mailformat)) {
+          document.form1.email.focus();
+          return true;
+        }
+        else {
+          $("#result").html("You have entered an invalid e-mail address!");
+          document.form1.email.focus();
+          return false;
+        }
+      }
+  </script>
+  <body onload="document.form1.email.focus()">
     <div class="topnav">
       <a class="active" href="/">Home</a>
       <a href="/keys">Keys</a>
@@ -46,20 +60,18 @@
     </div>
 
     <div id="registerpage">
-      <form id="registerForm" action="/login" method="POST">
-        <div class="input-box">
+      <form id="registerForm" name="form1" action="/login" method="POST">
+        <div class="input-box mail">
           <span class="details"><b>E-mail: </b></span>
-          <input type="email" name="email" placeholder="Enter your e-mail" required/>
+          <input id="email" type="text" name="email" placeholder="Enter your e-mail address" required/>
+          <p id="result"></p>
         </div>
         <div class="input-box">
           <span class="details"><b>Password: </b></span>
-          <input type="password" name="password" placeholder="Enter your e-mail" required/>
+          <input type="password" name="password" placeholder="Enter your password" required/>
         </div>
         <div>
-          <!-- <button id="action-btn" class="button" type="button" onclick="location.href='/keys'">
-            <span><b>Submit</b></span>
-          </button> -->
-          <input id="action-btn" class="button" type="submit" value="Submit"/>
+          <input id="action-btn" class="button" type="submit" name="submit" value="Submit" onclick="ValidateEmail(document.form1.email)"/>
         </div>
         <div>
           <a href="/register">You don't have an account? Register here.</a>
@@ -71,5 +83,4 @@
       <p>Footer</p>
     </div>
   </body>
-  <script type="module" src="/regi"></script>
 </html>
