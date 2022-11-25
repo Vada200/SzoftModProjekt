@@ -33,20 +33,6 @@
     <link rel="stylesheet" href="/styles"/>
     <title>Login</title>
   </head>
-  <script>
-      function ValidateEmail(inputText) {
-        var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        if (inputText.value.match(mailformat)) {
-          document.form1.email.focus();
-          return true;
-        }
-        else {
-          $("#result").html("You have entered an invalid e-mail address!");
-          document.form1.email.focus();
-          return false;
-        }
-      }
-  </script>
   <body onload="document.form1.email.focus()">
     <div class="topnav">
       <a class="active" href="/">Home</a>
@@ -78,7 +64,26 @@
         </div>
       </form>
     </div>
+    <script>
+      function ValidateEmail(inputText) {
+        const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (inputText.value.match(mailformat)) {
+          $("#result").html("");
+          document.form1.email.focus();
+          return true;
+        }
+        else {
+          $("#result").html("You have entered an invalid e-mail address!");
+          document.form1.email.focus();
+          return false;
+        }
+      }
 
+      document.form1.email.addEventListener("keyup", () => {
+        ValidateEmail(document.form1.email) === false ? document.form1.submit.disabled = true : document.form1.submit.disabled = false;
+      });
+
+    </script>
     <div class="footer">
       <p>Footer</p>
     </div>
