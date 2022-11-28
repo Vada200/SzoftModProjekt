@@ -162,21 +162,34 @@ generateTables().then(() => {
   }
 });
 
-$("#action-btn").on("mousemove", function (e) {
-  const x = e.pageX - e.target.offsetLeft;
-  const y = e.pageY - e.target.offsetTop;
+$("#action-btn")
+  .on("mousemove", function (e) {
+    const x = e.pageX - e.target.offsetLeft;
+    const y = e.pageY - e.target.offsetTop;
 
-  e.target.style.setProperty("--x", x + "px");
-  e.target.style.setProperty("--y", y + "px");
-});
+    e.target.style.setProperty("--x", x + "px");
+    e.target.style.setProperty("--y", y + "px");
+  })
+  .on("click", function () {
+    if ($("#input-field").val() !== "") {
+      $("#CommentModal").modal("toggle");
+    }
+  });
 
 $(".button").on("mousemove", function (e) {
-  const x = e.pageX - e.target.offsetLeft - e.target.offsetParent.offsetParent.offsetLeft -e.target.offsetParent.offsetLeft;
-  const y = e.pageY - e.target.offsetTop - e.target.offsetParent.offsetParent.offsetTop - e.target.offsetParent.offsetTop;
+  const x =
+    e.pageX -
+    e.target.offsetLeft -
+    e.target.offsetParent.offsetParent.offsetLeft -
+    e.target.offsetParent.offsetLeft;
+  const y =
+    e.pageY -
+    e.target.offsetTop -
+    e.target.offsetParent.offsetParent.offsetTop -
+    e.target.offsetParent.offsetTop;
 
   e.target.style.setProperty("--x", x + "px");
   e.target.style.setProperty("--y", y + "px");
-  console.log("fityma");
 });
 
 actionBtn.addEventListener("click", () => {
@@ -286,10 +299,3 @@ const postToAPI = async (data, address) => {
   });
   return response.json();
 };
-
-//modal
-$('#action-btn').on('click', function(){
-  if($("#input-field").val() != "" ) {
-   $('#CommentModal').modal('toggle');
-  }
-});

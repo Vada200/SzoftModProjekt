@@ -26,36 +26,22 @@ exports.register = async (req, res) => {
           email,
           password: hash,
         };
-        let flag = 1; //Declaring a flag
 
         //Inserting data into the database
-
         client.query(
           `INSERT INTO users (first_name, last_name, email, password) VALUES ($1,$2,$3,$4);`,
           [user.first_name, user.last_name, user.email, user.password],
           (err) => {
             if (err) {
-              flag = 0; //If user is not inserted to database assigning flag as 0/false.
               console.error(err);
               return res.status(500).json({
                 error: "Database error",
               });
             } else {
-              flag = 1;
-              res.status(200).send({ message: "User added to database!" });
+              return res.redirect("/login");
             }
           }
         );
-        // TODO: Email verification
-        if (flag) {
-          const token = jwt.sign(
-            //Signing a jwt token
-            {
-              email: user.email,
-            },
-            process.env.SECRET_KEY
-          );
-        }
       });
     }
   } catch (err) {
@@ -87,16 +73,16 @@ exports.login = async (req, res) => {
           });
         } else if (result === true) {
           //Checking if credentials match
-          const token = jwt.sign(
+          req.session.token = jwt.sign(
             {
               email: email,
             },
-            process.env.SECRET_KEY
+            process.env.SECRET_KEY,
+            {
+              expiresIn: "2h",
+            }
           );
-          res.status(200).json({
-            message: "User signed in!",
-            token: token,
-          });
+          return res.redirect("/keys");
         } else {
           //Declaring the errors
           if (result !== true)
@@ -111,5 +97,15 @@ exports.login = async (req, res) => {
     res.status(500).json({
       error: "Database error occurred while signing in!", //Database connection error
     });
+  }
+};
+
+// Logout
+exports.logout = async (req, res) => {
+  try {
+    req.session = null;
+    return res.redirect("/");
+  } catch (err) {
+    this.next(err);
   }
 };

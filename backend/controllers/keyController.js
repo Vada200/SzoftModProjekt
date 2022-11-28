@@ -1,5 +1,4 @@
 const client = require("../configs/database");
-const Action = require("../model/action");
 
 exports.modifyKey = (req, res) => {
   const { keyAvailability, remoteAvailability, keyId } = req.body;
