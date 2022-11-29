@@ -176,7 +176,6 @@ $(".button").on("mousemove", function (e) {
 
   e.target.style.setProperty("--x", x + "px");
   e.target.style.setProperty("--y", y + "px");
-  console.log("fityma");
 });
 
 actionBtn.addEventListener("click", () => {
