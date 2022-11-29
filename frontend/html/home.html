@@ -40,11 +40,12 @@
   </script>
   
   <body>
-    <div class="topnav">
-      <a class="active" href="/">Home</a>
-      <a style="background-color: #225a8b; color: white;" href="/keys">Keys</a>
-      <a href="/register">Register</a>
-      <a href="/login">Login</a>
+    <div id="navbar" class="topnav">
+      <a id="home" class="active" href="/">Home</a>
+      <a id="keys" style="background-color: #225a8b; color: white;" href="/keys">Keys</a>
+      <a id="register" href="/register">Register</a>
+      <a id="login" href="/login">Login</a>
+      <a id="logout" href="/logout">Logout</a>
     </div>
     <div id="logo-box">
       <div class="col">
@@ -109,6 +110,23 @@
       <p>Footer</p>
     </div>
   </body>
+  <script>
+    if (!document.cookie) {
+      $("#register").show(100);
+      $("#login").show(100);
+      $("#logout").hide(100);
+      $("#action-btn").hide(100);
+      $("#form-box").hide(100);
+      $("#statsPageButton").hide(100);
+    } else if (document.cookie) {
+      $("#register").hide(100);
+      $("#login").hide(100);
+      $("#logout").show(100);
+      $("#action-btn").show(100);
+      $("#form-box").show(100);
+      $("#statsPageButton").show(100);
+    }
+  </script>
   <script type="text/javascript" src="https://livejs.com/live.js"></script>
   <script type="module" src="/main"></script>
 </html>
