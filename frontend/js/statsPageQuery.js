@@ -56,11 +56,32 @@ export const generateStatsTable = () => {
   });
 };
 
-const addFiltering = () => {
-  const valamidiv = document.createElement("div");
-  const valamiszoveg = document.createTextNode("Ez itt valami szöveg");
-  valamidiv.appendChild(valamiszoveg);
+export const filterDatas = () => {
+  var filterName = document.getElementById("filter-name").value.toUpperCase();
+  var filterSelector = document.getElementById("filter-room");
+  var filterRoom = filterSelector.options[filterSelector.selectedIndex].text;
+  //alert(filterName+', '+filterRoom);
 
-const holvantable = document.getElementById("filter_table");
-document.body.insertBefore(valamidiv,holvantable);
-};
+
+  var statTable = document.getElementById("container");
+  var tr = statTable.getElementsByTagName("tr");
+  var namePicked, txtValue, roomValue, roomPicked;
+  for (var i = 0; i < tr.length; i++) {
+    namePicked = tr[i].getElementsByTagName("td")[0];
+    roomPicked = tr[i].getElementsByTagName("td")[1];
+    if(namePicked && roomPicked) {
+      txtValue = namePicked.textContent || namePicked.innerText;
+      roomValue = roomPicked.textContent || roomPicked.innerText;
+      //console.log(txtValue);
+      if (txtValue.toUpperCase().indexOf(filterName) > -1 && roomValue.indexOf(filterRoom) > -1) {
+        //alert("van ilyen");
+        tr[i].style.display="";
+      } else {
+        //alert("nincs ilyen");
+        tr[i].style.display="none";
+      }
+    };
+  };
+  
+
+}

@@ -83,9 +83,20 @@
     <!-- Stats Page -->
     <div class="filter_tag" style="display:none">
     <label>Name: </label>
-    <input type="text">
+    <input type="text" id="filter-name">
     <label>Classroom: </label>
-    <select class="rooms">
+    <select class="rooms" id="filter-room">
+      <optgroup label="Ground floor">
+        <option value="IK-F01">IK-F01</option>
+        <option value="IK-F02">IK-F02</option>
+        <option value="IK-F03">IK-F03</option>
+        <option value="IK-F04">IK-F04</option>
+        <option value="IK-F05">IK-F05</option>
+        <option value="IK-F06">IK-F06</option>
+        <option value="IK-F07">IK-F07</option>
+        <option value="IK-F08">IK-F08</option>
+        <option value="IK-F09">IK-F09</option>
+      </optgroup>
       <optgroup label="First floor">
       <option value="IK-101">IK-101</option>
       <option value="IK-102">IK-102</option>
@@ -119,20 +130,10 @@
       <option value="IK-308">IK-308</option>
       <option value="IK-309">IK-309</option>
     </optgroup>
-      <optgroup label="Fourth floor">
-      <option value="IK-401">IK-401</option>
-      <option value="IK-402">IK-402</option>
-      <option value="IK-403">IK-403</option>
-      <option value="IK-404">IK-404</option>
-      <option value="IK-405">IK-405</option>
-      <option value="IK-406">IK-406</option>
-      <option value="IK-407">IK-407</option>
-      <option value="IK-408">IK-408</option>
-      <option value="IK-409">IK-409</option>
-    </optgroup>
     </select>
 
-    <input type="button" value="Filter">
+    <input type="button" value="Filter" id="filter-btn">
+    <input type="button" value="Show All" id="show-all-btn">
   </div>
     <div id="container" class="statscontainer" style="display:none"></div>
     

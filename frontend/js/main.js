@@ -1,5 +1,6 @@
 import { generateTables } from "./generateTables";
 import { generateStatsTable } from "./statsPageQuery";
+import { filterDatas } from "./statsPageQuery";
 
 // Questions Array
 const questions = [{ question: "Enter Your Name" }];
@@ -29,6 +30,7 @@ const inputProgress = document.querySelector("#input-progress");
 const progress = document.querySelector("#progress-bar");
 const actionBtn = document.getElementById("action-btn");
 const nameField = document.getElementById("input-field");
+const filterBtn = document.getElementById("filter-btn");
 let selectedRow = null;
 
 // EVENTS
@@ -177,7 +179,7 @@ $("#keysPageButton")
     $(".filter_tag").hide(100);
   });
 
-generateStatsTable();
+//generateStatsTable();
 
 generateTables().then(() => {
   const clickableRows = document.querySelectorAll(".clickable");
@@ -241,6 +243,7 @@ actionBtn.addEventListener("click", () => {
     return;
   }
 
+
   const collection = selectedRow.getElementsByTagName("td");
   console.log(collection);
 
@@ -272,6 +275,25 @@ actionBtn.addEventListener("click", () => {
                        <input type="checkbox" id="remote-checkbox">
                    </label>`;
   }
+});
+
+var generated = false;
+document.getElementById("filter-btn").addEventListener("click", () => {
+  if (!generated) {
+  generated = true;
+  generateStatsTable();
+  }
+  filterDatas();
+  return;
+});
+
+
+document.getElementById("show-all-btn").addEventListener("click", () => {
+  if (!generated) {
+    generated = true;
+  generateStatsTable();
+  }
+  return;
 });
 
 document.getElementById("submit-btn").addEventListener("click", () => {
