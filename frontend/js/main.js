@@ -163,6 +163,7 @@ $("#statsPageButton")
     $("#statsPageButton").hide(100);
     $("#keysPageButton").show(100);
     $(".statscontainer").show(100);
+    $(".filter_tag").show(100);
   });
 
 //go to keys page (hide stats page)
@@ -173,6 +174,7 @@ $("#keysPageButton")
     $("#statsPageButton").show(100);
     $("#keysPageButton").hide(100);
     $(".statscontainer").hide(100);
+    $(".filter_tag").hide(100);
   });
 
 generateStatsTable();

@@ -9,6 +9,7 @@ const createTable = (actions) => {
 
 const createTableHead = () => {
   const tableHead = document.createElement("thead");
+  tableHead.setAttribute("id", "filter_table");
   tableHead.innerHTML = `
     <tr>
         <th scope="col">Name</th>
@@ -53,4 +54,13 @@ export const generateStatsTable = () => {
     const container = document.getElementById("container");
     container.append(createTable(actions));
   });
+};
+
+const addFiltering = () => {
+  const valamidiv = document.createElement("div");
+  const valamiszoveg = document.createTextNode("Ez itt valami szöveg");
+  valamidiv.appendChild(valamiszoveg);
+
+const holvantable = document.getElementById("filter_table");
+document.body.insertBefore(valamidiv,holvantable);
 };
