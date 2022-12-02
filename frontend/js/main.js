@@ -206,14 +206,13 @@ generateTables().then(() => {
   }
 });
 
-$("#action-btn")
-  .on("mousemove", function (e) {
-    const x = e.pageX - e.target.offsetLeft;
-    const y = e.pageY - e.target.offsetTop;
+$("#action-btn").on("mousemove", function (e) {
+  const x = e.pageX - e.target.offsetLeft;
+  const y = e.pageY - e.target.offsetTop;
 
-    e.target.style.setProperty("--x", x + "px");
-    e.target.style.setProperty("--y", y + "px");
-  })/* 
+  e.target.style.setProperty("--x", x + "px");
+  e.target.style.setProperty("--y", y + "px");
+}); /* 
   .on("click", function () {
     if ($("#input-field").val() !== "") {
       $("#CommentModal").modal("toggle");
@@ -237,21 +236,24 @@ $(".button").on("mousemove", function (e) {
 });
 
 actionBtn.addEventListener("click", () => {
-
   if (selectedRow === null) {
     alert("No key was selected!");
     return;
   }
-  
+
   const collection = selectedRow.getElementsByTagName("td");
+  console.log(collection);
 
   if (collection[availabilityIndex].innerHTML === availableSign) {
-    validate()
+    validate();
   }
 
   if (collection[availabilityIndex].innerHTML === unavailableSign) {
-    reverseValidate()
+    reverseValidate();
     if (collection[remoteAvailabilityIndex].innerHTML === unavailableSign) {
+      console.log(
+        collection[remoteAvailabilityIndex].innerHTML === unavailableSign
+      );
       document.getElementById(
         "commentModalTitle3"
       ).innerHTML = `Did you bring back the remote?
@@ -262,8 +264,7 @@ actionBtn.addEventListener("click", () => {
       document.getElementById("commentModalTitle3").innerHTML =
         "The remote was not taken!";
     }
-  }
-  if (collection[remoteAvailabilityIndex].innerHTML === availableSign) {
+  } else if (collection[remoteAvailabilityIndex].innerHTML === availableSign) {
     document.getElementById(
       "commentModalTitle3"
     ).innerHTML = `Do you want to take the remote? 
@@ -295,10 +296,7 @@ const handleDatabaseActions = (actionType) => {
   const keyData = {
     keyAvailability:
       collection[availabilityIndex].innerHTML === unavailableSign,
-    remoteAvailability:
-      actionType === "take"
-        ? !document.getElementById("remote-checkbox").checked
-        : document.getElementById("remote-checkbox")?.checked || true,
+    remoteAvailability: getRemoteAvailability(actionType),
     keyId: collection[keyIdIndex].innerHTML,
   };
 
@@ -307,6 +305,11 @@ const handleDatabaseActions = (actionType) => {
     keyId: keyData.keyId,
     comment: document.getElementById("comment-textarea").value,
   };
+
+  console.log(!document.getElementById("remote-checkbox")?.checked);
+  console.log(actionType);
+  console.log(keyData);
+  console.log(actionData);
 
   postToAPI(keyData, "modifyKey").then(() => {
     if (actionType === "take") {
@@ -319,6 +322,15 @@ const handleDatabaseActions = (actionType) => {
       });
     }
   });
+};
+
+const getRemoteAvailability = (actionType) => {
+  if ($("#remote-checkbox").length > 0) {
+    return actionType === "take"
+      ? !document.getElementById("remote-checkbox").checked
+      : document.getElementById("remote-checkbox").checked;
+  }
+  return actionType !== "take";
 };
 
 const postToAPI = async (data, address) => {
