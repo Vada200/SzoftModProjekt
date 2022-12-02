@@ -289,10 +289,11 @@ document.getElementById("filter-btn").addEventListener("click", () => {
 
 
 document.getElementById("show-all-btn").addEventListener("click", () => {
-  if (!generated) {
+  document.getElementById("container").innerHTML = "";
+
     generated = true;
   generateStatsTable();
-  }
+  
   return;
 });
 
