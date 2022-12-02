@@ -68,6 +68,16 @@ function transform(x, y) {
   formBox.style.transform = `translate(${x}px, ${y}px)`;
 }
 
+// Reverse validate Field
+function reverseValidate() {
+  // Make Sure Pattern Matches If There Is One
+  if (inputField.value.length < 1) {
+    reverseInputPass();
+  } else {
+    reverseInputFail();
+  }
+}
+
 // Validate Field
 function validate() {
   // Make Sure Pattern Matches If There Is One
@@ -78,9 +88,38 @@ function validate() {
   }
 }
 
+// Field Reverse Input Fail
+function reverseInputFail() {
+  formBox.className = "error";
+  formBox.className = "error";
+  for (let i = 0; i < 6; i++) {
+    setTimeout(transform, shakeTime * i, ((i % 2) * 2 - 1) * 20, 0);
+    setTimeout(transform, shakeTime * 6, 0, 0);
+    inputField.focus();
+  }
+  console.log("input fail");
+  return;
+}
+
 // Field Input Fail
 function inputFail() {
   formBox.className = "error";
+  for (let i = 0; i < 6; i++) {
+    setTimeout(transform, shakeTime * i, ((i % 2) * 2 - 1) * 20, 0);
+    setTimeout(transform, shakeTime * 6, 0, 0);
+    inputField.focus();
+  }
+  console.log("input fail");
+  return;
+}
+
+// Field Reverse Input Passed
+function reverseInputPass() {
+  formBox.className = "";
+  setTimeout(transform, 0, 0, 10);
+  setTimeout(transform, shakeTime, 0, 0);
+  $("#CommentModal").modal("toggle");
+  console.log("reverse input pass");
 }
 
 // Field Input Passed
@@ -88,6 +127,7 @@ function inputPass() {
   formBox.className = "";
   setTimeout(transform, 0, 0, 10);
   setTimeout(transform, shakeTime, 0, 0);
+  $("#CommentModal").modal("toggle");
 }
 
 // All Fields Complete - Show h1 end
@@ -95,6 +135,8 @@ function formComplete(admitKey) {
   const h1 = document.createElement("h1");
   h1.classList.add("end");
   if (admitKey) {
+    // Check if name is filled
+    validate();
     h1.appendChild(
       document.createTextNode(
         `Thanks ${inputField.value}. You successfully took over a key!`
@@ -169,12 +211,12 @@ $("#action-btn")
 
     e.target.style.setProperty("--x", x + "px");
     e.target.style.setProperty("--y", y + "px");
-  })
+  })/* 
   .on("click", function () {
     if ($("#input-field").val() !== "") {
       $("#CommentModal").modal("toggle");
     }
-  });
+  }); */
 
 $(".button").on("mousemove", function (e) {
   const x =
@@ -193,15 +235,20 @@ $(".button").on("mousemove", function (e) {
 });
 
 actionBtn.addEventListener("click", () => {
-  // Check if name is filled
-  validate();
-
-  const collection = selectedRow.getElementsByTagName("td");
 
   if (selectedRow === null) {
     alert("No key was selected!");
     return;
-  } else if (collection[availabilityIndex].innerHTML === unavailableSign) {
+  }
+  
+  const collection = selectedRow.getElementsByTagName("td");
+
+  if (collection[availabilityIndex].innerHTML === availableSign) {
+    validate()
+  }
+
+  if (collection[availabilityIndex].innerHTML === unavailableSign) {
+    reverseValidate()
     if (collection[remoteAvailabilityIndex].innerHTML === unavailableSign) {
       document.getElementById(
         "commentModalTitle3"
@@ -212,16 +259,6 @@ actionBtn.addEventListener("click", () => {
     } else {
       document.getElementById("commentModalTitle3").innerHTML =
         "The remote was not taken!";
-    }
-    return;
-  } else if (inputField.value.length < 1) {
-    inputFail();
-    alert("Name field must be filled!");
-    // Repeat Shake Motion -  Set i to number of shakes
-    for (let i = 0; i < 6; i++) {
-      setTimeout(transform, shakeTime * i, ((i % 2) * 2 - 1) * 20, 0);
-      setTimeout(transform, shakeTime * 6, 0, 0);
-      inputField.focus();
     }
   }
   if (collection[remoteAvailabilityIndex].innerHTML === availableSign) {

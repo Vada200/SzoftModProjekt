@@ -221,21 +221,12 @@ table {
   --size: 400px;
 }
 
-/* @media (max-width: 1015px) {
-  
-} */
-
+/* Table when window size < 1015 */
 @media only screen and (max-width: 1015px) {
-  body{
-    background-color: red;
-  }
   .tablee {
     border-right: none;
   }
-  #table-box {
-    flex-direction: column;
-  }
-  #table-box2 {
+  .table-wrapper {
     flex-direction: column;
   }
   #buttons {
@@ -244,11 +235,7 @@ table {
   #form-box {
     width: 80%;
   }
-  #table-box {
-    width: 80%;
-    min-width: 0;
-  }
-  #table-box2 {
+  .table-wrapper {
     width: 80%;
     min-width: 0;
   }
