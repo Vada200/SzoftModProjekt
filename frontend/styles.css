@@ -42,7 +42,7 @@ h1.end {
   transition: 0.8s ease-in-out;
 }
 
-#content-container, #container {
+#content-container {
   height: 35vh;
   display: flex;
   flex-direction: column;
@@ -332,4 +332,17 @@ td, tr, th {
   background-color: #428bca !important;
   height: 67vh !important;
   width: 40vh !important;
+}
+
+#container {
+  margin-bottom: 5vh;
+  width: 90%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.filter_tag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
